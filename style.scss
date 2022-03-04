@@ -50,11 +50,13 @@ button {
 }
 
 table {
+   background-color: lightsalmon;
    width: 100%;
    border: 1px solid #000;
    margin: 0;
    padding: 0;
 }
+
 th {
    background-color: lightsalmon;
    font-size: 18px;
@@ -90,3 +92,15 @@ td {
    font-size: 18px;
 }
 
+
+.delete {
+   text-align: center;
+   font-size: 16px;
+   font-weight: 700;
+   cursor:pointer;
+   text-decoration: none;
+}
+
+.last-td {
+   width: 20px;
+}

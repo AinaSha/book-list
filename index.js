@@ -22,9 +22,13 @@ UI.prototype.addBookList = function (book) {
    row.innerHTML =`
    <td>${book.title}</td>
    <td>${book.author}</td>
-   <td>${book.isbn}</td>`;
-
+   <td>${book.isbn}</td>
+   <td class="last-td"><a class="delete" href="#">
+   X</a></td>
+   `;
+   
    list.appendChild(row);
+
 }
 
 
@@ -40,10 +44,14 @@ UI.prototype.showAlert = function(message, className) {
 
    setTimeout(function() {
       document.querySelector('.alert').remove();
-    }, 3000);
+    }, 2000);
 }
 
-
+UI.prototype.deleteBook = function(target) {
+   if(target.className === 'delete') {
+      target.parentElement.parentElement.remove();
+   }
+}
 
 //Clear fields
 UI.prototype.clearFields = function() {
@@ -62,7 +70,7 @@ document.getElementById('book-form').addEventListener('submit', (e)=>{
     //Instantiate book (создаем обьект)
     const book = new Book(title, author, isbn);
     const ui = new UI();
-    
+   
     if(title === '' || author === '' || isbn === '') {
        ui.showAlert('Пожалуйста, заполните все поля', 'error');
     } else {
@@ -75,4 +83,15 @@ document.getElementById('book-form').addEventListener('submit', (e)=>{
     
 });
 
+
+document.getElementById('book-list').addEventListener('click', function(e) {
+   const ui = new UI();
+
+   ui.deleteBook(e.target);
+
+   ui.showAlert('Книга удалена!', 'success');
+
+   e.preventDefault();
+    
+})
 
